@@ -43,6 +43,7 @@ void loadWord(char word[STRCAP]){
 	wordPtr = fopen("mystery.txt", "r");
 	if(wordPtr==NULL){
 		printf("Could not open file.\n");
+		return;
 	}
 	fgets(word, STRCAP, wordPtr);
 	fclose(wordPtr);
@@ -101,7 +102,6 @@ void evalGuess(char guess[STRCAP], char word[STRCAP], char evaluation[STRCAP]){
 	}
 	evaluation[i-1]='\0';
 	guess[i-1]='\0';
-	word[i-1]='\0';
 	for(i=0; guess[i]!='\0'; i++){
 		if(evaluation[i]=='1'){
 			for(int j=0; word[j]!='\0'; j++){
