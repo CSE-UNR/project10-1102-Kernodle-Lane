@@ -107,7 +107,6 @@ void evalGuess(char guess[STRCAP], char word[STRCAP], char evaluation[STRCAP]){
 			for(int j=0; word[j]!='\0'; j++){
 				if(evaluation[j]=='1' && guess[i]==word[j]){
 					evaluation[i] = '^';
-					break;
 				}
 			}
 		}
@@ -135,13 +134,16 @@ void trackPrnt(int tryCtr, char tracker[][STRCAP], char guess[STRCAP], char eval
 }
 
 int rounds(char guess[STRCAP], char word[STRCAP], char evaluation[STRCAP], int tryCtr){
-	int solved=1;
+	int solved=0, counter=0;
 	getGuess(tryCtr, guess);
 	evalGuess(guess, word, evaluation);
 	for (int i=0; word[i]!='\0'; i++){
-		if(word[i] != guess[i]+32){
-			solved = 0;
+		if(word[i] == (guess[i]+32)){
+			counter++;
 		}
+	}
+	if (counter == WRD_LGTH){
+		solved=1;
 	}
 	return solved;
 }
